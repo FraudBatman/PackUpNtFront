@@ -1,15 +1,20 @@
 <script lang="ts">
+	import { octokit } from '$lib/octokit';
 	import { user } from '$lib/sessionStore';
 
-	function userTest(): void {
-		console.log(user);
+	async function userTest() {
 		let userName: string = '';
-
 		if (user != undefined && user.identities != undefined) {
-			let userName = user?.identities[0]?.identity_data['user_name'];
+			userName = user?.identities[0]?.identity_data.user_name;
 		} else {
 			return;
 		}
+		console.log(userName);
+		let { data } = await octokit.request('GET /users/{username}/repos', {
+			username: userName,
+			headers: {}
+		});
+		console.log(data);
 	}
 </script>
 
