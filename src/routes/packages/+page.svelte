@@ -14,9 +14,16 @@
 			username: userName,
 			headers: {}
 		});
-		console.log(data);
+		//console.log(data);
+		return data;
 	}
 </script>
+
+{#await userTest() then data} <!--rewrite userTest() to return the response, instead of just console.logging it-->
+  {#each data as repository}
+    <p>{repository.name}</p>
+  {/each}
+{/await}
 
 <main>
 	<h1>Packages</h1>
