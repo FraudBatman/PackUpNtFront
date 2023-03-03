@@ -33,7 +33,7 @@
 	}
 </script>
 
-<main>
+<main style="color: white">
 	{#if loggedIn}
 		Hello, {userName}!
 		<button
