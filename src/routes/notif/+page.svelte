@@ -1,7 +1,7 @@
 <div class="jumbotron bg-light-subtle">
-    <h1 class="display-1">Welcome to P.U.N.</h1>
-    <p class="lead fs-1">A helpful, convenient toolkit that serves to keep packages optimized to the user's preferences and
-        send email notifications to remind them to keep things up to date.</p>
+    <h1 class="display-1">Notifications</h1>
+    <p class="lead fs-1">Recieve Useful Notifications through our customizable emailing feature. Customize the frequenchy of emails and which
+      repos you want to notify for. </p>
     <hr class="my-4">
     <p class="fs-2">A Package Update Notifier that can make developer lives easier!</p>
     <p class="lead">
