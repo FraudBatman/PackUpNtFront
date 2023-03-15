@@ -4,6 +4,7 @@
 	import { supabase } from '$lib/supabaseClient';
 	import { onMount } from 'svelte';
 	import type { LayoutData } from './$types';
+	import logo from '$lib/logo.png';
 
 	onMount(() => {
 		const {
@@ -22,7 +23,13 @@
 
 <nav class="navbar bg-dark navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
 	<div class="container-fluid">
-		<a class="navbar-brand" href="/">Home</a>
+		<a class="navbar-brand" href="/" style="width: 2.5%"><img src={logo} class="rounded img-fluid" alt="RIP"></a>
+		<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+			<div class="navbar-nav">
+				<a class="nav-link" href="/packages">Packages</a>
+				<a class="nav-link" href="/notif">Notifications</a>
+			</div>
+		</div>
 		<GithubLogin />
 		<button
 			class="navbar-toggler"
@@ -35,12 +42,6 @@
 		>
 			<span class="navbar-toggler-icon" />
 		</button>
-		<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-			<div class="navbar-nav">
-				<a class="nav-link" href="/packages">Packages</a>
-				<a class="nav-link" href="/notif">Notifications</a>
-			</div>
-		</div>
 	</div>
 </nav>
 

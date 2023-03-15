@@ -19,21 +19,22 @@
 	}
 </script>
 
-<div class="jumbotron bg-light-subtle">
-	<h1 class="display-1">Packages</h1>
-    <p class="lead fs-1">An organized GitHub directory where you can view your repo projects and view current, most recent, and recommended updates. </p>
+<div class="jumbotron">
+	<h1 class="display-1" style="color: black">Packages</h1>
+    <p class="lead fs-1" style="color: black;">An organized GitHub directory where you can view your repo projects and view current, most recent, and recommended updates. </p>
     
-    <hr class="my-4">
-    <p class="fs-2">A Package Update Notifier that can make developer lives easier!</p>
+    <hr class="my-4" style="color: black">
+    <!-- <p class="fs-2" style="color: black;">A Package Update Notifier that can make developer lives easier!</p> -->
     <p class="lead">
     </p>
 </div>
 
 <main>
-	<div class="container text-center border border-secondary border-4">REPOS
+	<div class="container text-center fs-3" style="color: black;"><b>REPOS</b>
 		{#await userTest() then data} <!--rewrite userTest() to return the response, instead of just console.logging it-->
   			{#each data as repository}
-    		<div class="row">{repository.full_name}
+    		<div class="row">
+				<div class="col">{repository.full_name}</div>
 				<div class="col">{repository.visibility}</div>
 				<div class="col">{repository.created_at}</div>
 			</div>
@@ -41,10 +42,10 @@
   			{/each}
 		{/await}
 
-		<div class="row">
+		<!-- <div class="row">
 			<div class="col">Test</div>
 			<div class="col">Test2</div>
 			<div class="col">Test3</div>
-		</div>
+		</div> -->
 	</div>	
 </main>
