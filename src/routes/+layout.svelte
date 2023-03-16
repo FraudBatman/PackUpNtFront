@@ -26,7 +26,7 @@
 		<a class="navbar-brand" href="/" style="width: 2.5%"><img src={logo} class="rounded img-fluid" alt="RIP"></a>
 		<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 			<div class="navbar-nav">
-				<a class="nav-link" href="/packages">Packages</a>
+				<a class="nav-link" href="/repos">Repositories</a>
 				<a class="nav-link" href="/notif">Notifications</a>
 			</div>
 		</div>

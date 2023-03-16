@@ -20,7 +20,7 @@
 </script>
 
 <div class="jumbotron">
-	<h1 class="display-1" style="color: black">Packages</h1>
+	<h1 class="display-1" style="color: black">Repositories</h1>
     <p class="lead fs-1" style="color: black;">An organized GitHub directory where you can view your repo projects and view current, most recent, and recommended updates. </p>
     
     <hr class="my-4" style="color: black">
@@ -34,7 +34,7 @@
 		{#await userTest() then data} <!--rewrite userTest() to return the response, instead of just console.logging it-->
   			{#each data as repository}
     		<div class="row">
-				<div class="col">{repository.full_name}</div>
+				<div class="col">{repository.name}</div>
 				<div class="col">{repository.visibility}</div>
 				<div class="col">{repository.created_at}</div>
 			</div>

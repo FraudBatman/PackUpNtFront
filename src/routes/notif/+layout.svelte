@@ -5,5 +5,5 @@
 {#if user}
 	<slot />
 {:else}
-	<h1><strong>NOT LOGGED IN + L + RATIO</strong></h1>
+	<h1><strong>Please login to view notifications</strong></h1>
 {/if}

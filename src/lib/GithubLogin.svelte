@@ -43,20 +43,6 @@
 			on:mouseleave={ohThankGodItsOver}>Log Out?</button
 		>
 	{:else}
-		<button class="btn btn-primary" on:click={signInWithGitHub}
-			><img
-				src="https://assets-global.website-files.com/6257adef93867e50d84d30e2/62595384f934b806f37f4956_145dc557845548a36a82337912ca3ac5.svg"
-				class="img-fluid"
-				id="discordLogo"
-				alt="Discord Logo"
-			/>Log In with Dis I Mean github</button
-		>
+		<button class="btn btn-primary" on:click={signInWithGitHub}>Log in with GitHub</button>
 	{/if}
 </main>
-
-<style>
-	#discordLogo {
-		margin-right: 10px;
-		max-height: 1.25em;
-	}
-</style>
