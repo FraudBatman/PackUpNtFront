@@ -5,5 +5,5 @@
 {#if user}
 	<slot />
 {:else}
-	<h1><strong>Please login to view repositories</strong></h1>
+	<h1 style="color: white;"><strong>Please login to view repositories</strong></h1>
 {/if}
