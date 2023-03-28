@@ -41,10 +41,27 @@
 
 </script>
 
+<!-- Checkbox tool -->
+<div class="form-check">
+    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+    <label class="form-check-label" for="flexCheckDefault">
+      Default checkbox
+    </label>
+  </div>
+
+  
+  <div class="form-check">
+    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+    <label class="form-check-label" for="flexCheckChecked">
+      Checked checkbox
+    </label>
+  </div>
+
+<!-- Jumbotron display -->
 <div class="jumbotron">
-    <h1 class="display-1" style="color: white">Notifications</h1>
+    <h1 class="display-1" style="color: white">Configurations</h1>
     <p class="lead fs-1" style="color: white;">Receive useful notifications through our customizable emailing feature. Customize the frequency of emails and which
-      repos you want to notify for. </p>
+      repos/packages you want to notify for. </p>
     <hr class="my-4" style="color: black">
     <p class="fs-2" style="color: white;">A Package Update Notifier that can make developer lives easier!</p>  
     <p class="lead">

@@ -20,7 +20,7 @@
 
 <div class="jumbotron">
 	<h1 class="display-1" style="color: white">Repositories</h1>
-    <p class="lead fs-1" style="color: white;">An organized GitHub directory where you can view your repo projects and view current, most recent, and recommended updates. </p>
+    <p class="lead fs-1" style="color: white;">An organized GitHub directory where you can view your repo projects and view current and most recent updates. </p>
     
     <hr class="my-4" style="color: black">
     <p class="lead">
