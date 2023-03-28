@@ -29,6 +29,15 @@
 
     test();
     
+    //pull all rows from package info
+    async function optOutPackages(){
+    let { data: package_info, error } = await supabase  
+        .from('package_info')
+        .select('*')
+        console.log(package_info);
+    }
+
+    optOutPackages();
 
 </script>
 
