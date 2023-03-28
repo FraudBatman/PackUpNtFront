@@ -41,7 +41,7 @@
 
 </script>
 
-<!-- Checkbox tool -->
+<!-- Checkbox tool opt IN -->
 <div class="form-check">
     <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
     <label class="form-check-label" for="flexCheckDefault">
@@ -49,7 +49,7 @@
     </label>
   </div>
 
-  
+<!-- Checkbox tool opt Out -->
   <div class="form-check">
     <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
     <label class="form-check-label" for="flexCheckChecked">
