@@ -1,3 +1,18 @@
+<script lang="ts">
+    import { supabase } from "$lib/supabaseClient";
+
+    async function test() {
+        let { data: backend_reponse, error } = await supabase
+            .from('backend_reponse')
+            .select('*')
+    console.log(data);
+    
+    //add this to only get specific repo
+    // .eq('repo_id', getTheRepoIdAndPutInAsAVariableHere)
+    }
+
+</script>
+
 <div class="jumbotron">
     <h1 class="display-1" style="color: white">Notifications</h1>
     <p class="lead fs-1" style="color: white;">Receive useful notifications through our customizable emailing feature. Customize the frequency of emails and which
