@@ -1,17 +1,8 @@
 <script lang="ts">
     import { supabase } from "$lib/supabaseClient";
+	import type { backend_response, package_info, repo_settings } from "$lib/supabaseInterfaces";
     
-    async function test() {
-        let { data: backend_reponse, error } = await supabase
-        .from('backend_reponse')
-        .select('*')
-
-        //add this to only get specific repo
-        // .eq('repo_id', 123456789)
-        console.log(backend_reponse);
-
-        return backend_reponse;
-    }
+    
 
     //create a new repo_setting row
     const theRepoId = "";
@@ -26,18 +17,7 @@
         { repo_id: theRepoId, email: email, excluded_packages: theExcludedPackages, notification_frequency: notifreq, notification_day : notifday  },
         ])
     }
-
-    test();
     
-    //pull all rows from package info
-    async function optOutPackages(){
-    let { data: package_info, error } = await supabase  
-        .from('package_info')
-        .select('*')
-        console.log(package_info);
-    }
-
-    optOutPackages();
 
 </script>
 
