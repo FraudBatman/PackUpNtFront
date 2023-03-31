@@ -72,9 +72,20 @@
   			.eq('repo_id', 123456789)
 	}
 
-	function checkboxHandler(event: any) {
+	function repoCheckboxHandler(event: any) {
 		if (event.target.checked) {
-			alert(event.type);
+			var repoId = event.target.parentElement.parentElement.id;
+
+			alert(repoId);
+		}
+	}
+	
+	function pkgCheckboxHandler(event: any) {
+		if (event.target.checked) {
+			var repoId = event.target.parentElement.parentElement.parentElement.id;
+			var pkgName = event.target.name;
+
+			alert(repoId + pkgName);
 		}
 	}
 	// console.log(pullPackages(123456789));
@@ -99,10 +110,11 @@
 	<div class="container text-center fs-3" style="color: white;"><b>{#await userTest() then userName}{userName}'s {/await}Repos</b>
 		{#await pullBackendResponse() then backend_reponse}
 			{#each backend_reponse as repo}
+			<div id={repo.repo_id}>
 			<!-- default checkbox for each repo starts unchecked -->
 				<div class="form-check">
-					<input class="form-check-input" type="checkbox" value="" id={repo.repo_id} on:change={checkboxHandler}>
-					<label class="form-check-label" for={repo.repo_id}>
+					<input class="form-check-input" type="checkbox" value="" id={String(repo.id)} on:change={repoCheckboxHandler}>
+					<label class="form-check-label" for={String(repo.id)}>
 					Repo ID: {repo.repo_id}
 					</label>
 			  	</div>
@@ -113,7 +125,7 @@
 						<div class="row" style="">
 							<div class="form-check col" style="">
 								<!-- use string concatenation to give unique id for each package -->
-								<input class="form-check-input" type="checkbox" value="" id={String(pkg.response_id) + String(pkg.id)}>
+								<input class="form-check-input" type="checkbox" value="" name={pkg.package_name} id={String(pkg.response_id) + String(pkg.id)} on:change={pkgCheckboxHandler}>
 								<label class="form-check-label" for={String(pkg.response_id) + String(pkg.id)}>
 									<div class="">Package name: {pkg.package_name}</div>
 								</label>
@@ -121,8 +133,9 @@
 							<div class="col">Installed version: {pkg.repo_version}</div>
 							<div class="col">Most recent version: {pkg.current_version}</div>
 						</div>
-					{/each}
-				{/await}
+						{/each}
+						{/await}
+			</div>
 			{/each}
 		{/await}
 		<!-- {#await main() then data}
