@@ -21,22 +21,6 @@
 
 </script>
 
-<!-- Checkbox tool opt IN -->
-<div class="form-check">
-    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-    <label class="form-check-label" for="flexCheckDefault">
-      Default checkbox
-    </label>
-  </div>
-
-<!-- Checkbox tool opt Out -->
-  <div class="form-check">
-    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-    <label class="form-check-label" for="flexCheckChecked">
-      Checked checkbox
-    </label>
-  </div>
-
 <!-- Jumbotron display -->
 <div class="jumbotron">
     <h1 class="display-1" style="color: white">Configurations</h1>
