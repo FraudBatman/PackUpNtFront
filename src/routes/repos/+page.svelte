@@ -33,8 +33,6 @@
 
         return backend_reponse;
     }
-
-    // pullBackendResponse();
     
     //pull all rows from package info
     async function pullPackages(response_id: number){
@@ -49,8 +47,6 @@
             return package_info;
     }
 
-    // pullPackages();
-
     //pull all rows from repo settings
     async function pullSettings() {
         let { data, error } = await supabase
@@ -62,6 +58,20 @@
             var repo_settings = <repo_settings[]>data;
 
             return repo_settings;
+    }
+
+	//create a new repo_setting row
+    const theRepoId = "";
+    const email = "";
+    const theExcludedPackages = "";
+    const notifreq = "";
+    const notifday = "";
+    async function createNewSetting() {
+        const { data, error } = await supabase
+        .from('repo_settings')
+        .insert([
+        { repo_id: theRepoId, email: email, excluded_packages: theExcludedPackages, notification_frequency: notifreq, notification_day : notifday  },
+        ])
     }
 
 	// update existing rows in repo settings
@@ -90,10 +100,6 @@
 	}
 	// console.log(pullPackages(123456789));
 	// console.log(pullSettings());
-
-
-
-    // pullSettings();
 
 </script>
 
@@ -125,7 +131,7 @@
 						<div class="row" style="">
 							<div class="form-check col" style="">
 								<!-- use string concatenation to give unique id for each package -->
-								<input class="form-check-input" type="checkbox" value="" name={pkg.package_name} id={String(pkg.response_id) + String(pkg.id)} on:change={pkgCheckboxHandler}>
+								<input class="form-check-input" type="checkbox" checked value="" name={pkg.package_name} id={String(pkg.response_id) + String(pkg.id)} on:change={pkgCheckboxHandler}>
 								<label class="form-check-label" for={String(pkg.response_id) + String(pkg.id)}>
 									<div class="">Package name: {pkg.package_name}</div>
 								</label>

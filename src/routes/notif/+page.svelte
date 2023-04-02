@@ -3,7 +3,7 @@
 	import type { backend_response, package_info, repo_settings } from "$lib/supabaseInterfaces";
     
     //pull all rows from repo settings
-    async function pullSettings() {
+    async function pullAllSettings() {
         let { data, error } = await supabase
             .from('repo_settings')
             .select('*')
@@ -14,22 +14,22 @@
 
             return repo_settings;
     }
-    
-    // pullSettings();
 
-    //create a new repo_setting row
-    const theRepoId = "";
-    const email = "";
-    const theExcludedPackages = "";
-    const notifreq = "";
-    const notifday = "";
-    async function createNewSetting() {
-        const { data, error } = await supabase
-        .from('repo_settings')
-        .insert([
-        { repo_id: theRepoId, email: email, excluded_packages: theExcludedPackages, notification_frequency: notifreq, notification_day : notifday  },
-        ])
-    }
+    // update existing rows in repo settings
+	async function updateFreq(repo_id: string, freq: string) {
+		const { data, error } = await supabase
+  			.from('repo_settings')
+  			.update({ notification_frequency: freq })
+  			.eq('repo_id', repo_id)
+	}
+    
+    // update existing rows in repo settings
+	async function updateDay(repo_id: string, day: string) {
+		const { data, error } = await supabase
+  			.from('repo_settings')
+  			.update({ notification_day: day })
+  			.eq('repo_id', repo_id)
+	}
     
     const freq_list = ["Weekly", "Monthly"];
     const day_list = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -38,15 +38,19 @@
         var repoId = event.target.parentElement.id;
         var freq = event.target.value;
 
-        alert(repoId + freq);
+        updateFreq(repoId, freq);
+        console.log(pullAllSettings());
     }
 
     function daySelectHandler(event: any) {
         var repoId = event.target.parentElement.id;
         var day = event.target.value;
-
-        alert(repoId + day);
+        
+        updateDay(repoId, day);
+        console.log(pullAllSettings());
     }
+
+    console.log(pullAllSettings());
 
 </script>
 
@@ -58,8 +62,9 @@
       repos/packages you want to notify for. </p>
     <hr class="my-4" style="color: black">
     <div class="text-center fs-3" style="color: white;">
-        {#await pullSettings() then all_settings}
+        {#await pullAllSettings() then all_settings}
 			{#each all_settings as repo}
+            <!-- {localSettings(repo)} -->
             <div class="row" id={repo.repo_id}>
                 <div class="col">{repo.repo_id}</div>
                 <select class="form-select col" id="" on:change={freqSelectHandler}>
