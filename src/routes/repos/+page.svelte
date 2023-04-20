@@ -143,33 +143,49 @@
 </div>
 
 <main>
-	<table class="table table-striped table-hover">
-		<thead>
-		  <tr>
-			<th scope="col">#</th>
-			<th scope="col">First</th>
-			<th scope="col">Last</th>
-			<th scope="col">Handle</th>
-		  </tr>
-		</thead>
-		<tbody>
-		  <tr>
-			<th scope="row">1</th>
-			<td>Mark</td>
-			<td>Otto</td>
-			<td>@mdo</td>
-		  </tr>
-		  <tr>
-			<th scope="row">2</th>
-			<td>Jacob</td>
-			<td>Thornton</td>
-			<td>@fat</td>
-		  </tr>
-		  <tr>
-			<th scope="row">3</th>
-			<td colspan="2">Larry the Bird</td>
-			<td>@twitter</td>
-		  </tr>
-		</tbody>
-	  </table>
+	<div class="container">
+		<div class="row">
+		  <div class="col-12">
+			<table class="table table-bordered">
+			  <thead>
+				<tr>
+				  <th scope="col">Repo OPT-IN</th>
+				  <th scope="col">Repo Identification</th>
+				</tr>
+			  </thead>
+			  <!--Body Start-->
+			  <tbody>
+				<tr>
+				  <td>
+					<div class="custom-control custom-checkbox">
+						<input type="checkbox" class="custom-control-input" id="customCheck1">
+						<label class="custom-control-label" for="customCheck1">1</label>
+					</div>
+				  </td>
+				  <td>Bootstrap 4 CDN and Starter Template</td>
+				</tr>
+				<tr>
+				  <td>
+					<div class="custom-control custom-checkbox">
+						<input type="checkbox" class="custom-control-input" id="customCheck2">
+						<label class="custom-control-label" for="customCheck2">2</label>
+					</div>
+				  </td>
+				  <td>Bootstrap Grid 4 Tutorial and Examples</td>
+				</tr>
+				<tr>
+				  <td>
+					<div class="custom-control custom-checkbox">
+						<input type="checkbox" class="custom-control-input" id="customCheck3">
+						<label class="custom-control-label" for="customCheck3">3</label>
+					</div>
+				  </td>
+				  <td>Bootstrap Flexbox Tutorial and Examples</td>
+				</tr>
+			  </tbody>
+			  <!--Body End-->
+			</table>
+		  </div>
+		</div>
+	  </div>
 </main>
