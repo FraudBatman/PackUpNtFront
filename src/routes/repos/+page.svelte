@@ -143,53 +143,33 @@
 </div>
 
 <main>
-	<div class="container text-center fs-3" style="color: white;">
-		{#await userTest() then repos}<b>{repos[0].owner.login}'s Repos</b>
-		<!-- {#await pullBackendResponse() then backend_reponse} -->
-		<div id="list">
-			{#each repos as repo}
-			<!-- default checkbox for each repo starts unchecked -->
-				<div class="form-check">
-					{#await pullSettings(repo.id) then settings}
-						{#if settings}	
-							<input class="form-check-input" type="checkbox" value="" id={repo.id} checked>
-						{:else}
-							<input class="form-check-input" type="checkbox" value="" id={repo.id}>
-						{/if}
-					{/await}
-					<label class="form-check-label" for={repo.id}>
-					{repo.name}
-					</label>
-			  	</div>
-				<!-- {#await pullPackages(repo.id) then package_info}
-					{#each package_info as pkg}
-						
-						<div class="row" style="">
-							<div class="form-check col" style="">
-								<input class="form-check-input" type="checkbox" checked value="" name={pkg.package_name} id={String(pkg.response_id) + String(pkg.id)} on:change={pkgCheckboxHandler}>
-								<label class="form-check-label" for={String(pkg.response_id) + String(pkg.id)}>
-									<div class="">Package name: {pkg.package_name}</div>
-								</label>
-							</div>
-							<div class="col">Installed version: {pkg.repo_version}</div>
-							<div class="col">Most recent version: {pkg.current_version}</div>
-						</div>
-						{/each}
-						{/await} -->
-			{/each}
-		</div>
-		{/await}
-
-		<button class="btn btn-primary" type="submit" on:click={saveChanges}>Save changes</button>
-		<!-- {#await main() then data}
-  			{#each data as repository}
-    		<div class="row">
-				<div class="col">{repository.name}</div>
-				<div class="col">{repository.visibility}</div>
-				<div class="col">{repository.created_at}</div>
-			</div>
-
-  			{/each}
-		{/await} -->
-	</div>	
+	<table class="table table-striped table-hover">
+		<thead>
+		  <tr>
+			<th scope="col">#</th>
+			<th scope="col">First</th>
+			<th scope="col">Last</th>
+			<th scope="col">Handle</th>
+		  </tr>
+		</thead>
+		<tbody>
+		  <tr>
+			<th scope="row">1</th>
+			<td>Mark</td>
+			<td>Otto</td>
+			<td>@mdo</td>
+		  </tr>
+		  <tr>
+			<th scope="row">2</th>
+			<td>Jacob</td>
+			<td>Thornton</td>
+			<td>@fat</td>
+		  </tr>
+		  <tr>
+			<th scope="row">3</th>
+			<td colspan="2">Larry the Bird</td>
+			<td>@twitter</td>
+		  </tr>
+		</tbody>
+	  </table>
 </main>
