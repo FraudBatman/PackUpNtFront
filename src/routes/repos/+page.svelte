@@ -144,6 +144,8 @@
 
 <main>
 	<div class="container">
+		{#await userTest() then repos}<b>{repos[0].owner.login}'s Repos</b>
+		{#each repos as repo}
 		<div class="row">
 		  <div class="col-12">
 			<table class="table table-bordered">
@@ -159,33 +161,24 @@
 				  <td>
 					<div class="custom-control custom-checkbox">
 						<input type="checkbox" class="custom-control-input" id="customCheck1">
+						{#await pullSettings(repo.id) then settings}
+                        {#if settings}    
+                            <input class="form-check-input" type="checkbox" value="" id={repo.id} checked>
+                        {:else}
+                            <input class="form-check-input" type="checkbox" value="" id={repo.id}>
+                        {/if}
+                    	{/await}
 						<label class="custom-control-label" for="customCheck1">1</label>
 					</div>
 				  </td>
 				  <td>Bootstrap 4 CDN and Starter Template</td>
-				</tr>
-				<tr>
-				  <td>
-					<div class="custom-control custom-checkbox">
-						<input type="checkbox" class="custom-control-input" id="customCheck2">
-						<label class="custom-control-label" for="customCheck2">2</label>
-					</div>
-				  </td>
-				  <td>Bootstrap Grid 4 Tutorial and Examples</td>
-				</tr>
-				<tr>
-				  <td>
-					<div class="custom-control custom-checkbox">
-						<input type="checkbox" class="custom-control-input" id="customCheck3">
-						<label class="custom-control-label" for="customCheck3">3</label>
-					</div>
-				  </td>
-				  <td>Bootstrap Flexbox Tutorial and Examples</td>
 				</tr>
 			  </tbody>
 			  <!--Body End-->
 			</table>
 		  </div>
 		</div>
-	  </div>
+		{/await}
+		{/each}
+	</div>
 </main>
