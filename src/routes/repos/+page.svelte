@@ -143,15 +143,15 @@
 </div>
 
 <main>
-	<div class="container">
+	<div class="container fs-3 text-center">
 		{#await userTest() then repos}<b>{repos[0].owner.login}'s Repos</b>
 		<div class="row">
 			<div class="col-12">
-				<table class="table table-bordered">
+				<table class="table table-bordered fs-3 text-center">
 					<thead>
 						<tr>
-							<th scope="col">Repo OPT-IN</th>
-							<th scope="col">Repo Identification</th>
+							<!-- <th scope="col"></th> -->
+							<!-- <th scope="col">Repo </th> -->
 						</tr>
 					</thead>
 					<!--Body Start-->
@@ -168,10 +168,10 @@
                             <input class="form-check-input" type="checkbox" value="" id={repo.id}>
                         {/if}
                     	{/await}
-						<label class="custom-control-label" for="customCheck1">1</label>
+						
 					</div>
 				  </td>
-				  <td>Bootstrap 4 CDN and Starter Template</td>
+				  <td><label class="custom-control-label" for="{repo.id}">{repo.name}</label></td>
 				</tr>
 				{/each}
 			  </tbody>
@@ -179,6 +179,7 @@
 			</table>
 		  </div>
 		</div>
+		<button class="btn btn-primary" type="submit" on:click={saveChanges}>Save changes</button>
 		{/await}
 	</div>
 </main>
