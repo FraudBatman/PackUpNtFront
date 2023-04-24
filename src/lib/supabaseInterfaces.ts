@@ -22,5 +22,6 @@ export interface repo_settings {
     excluded_packages: string,
     notification_frequency: string,
     notification_day: string,
-    email: string
+    email: string,
+    enabled: boolean
 }

@@ -27,7 +27,7 @@
             .eq('repo_id', repo_id)
 
             var repo_settings = <repo_settings[]>data;
-			console.log(repo_settings[0]);
+			// console.log(repo_settings[0]);
             return repo_settings[0];
     }
 
@@ -36,24 +36,24 @@
         const { data, error } = await supabase
         .from('repo_settings')
         .insert([
-        { repo_id: repo_id, email: user?.email, excluded_packages: null, notification_frequency: "Weekly", notification_day : "Monday"  },
+        { repo_id: repo_id, email: user?.email, excluded_packages: null, notification_frequency: "Weekly", notification_day : "Monday", enabled: true  },
         ])
     }
 
 	// update existing rows in repo settings
-	async function updateSettings(repo_id: string) {
+	async function updateSettings(repo_id: string, enabled: boolean) {
 		const { data, error } = await supabase
   			.from('repo_settings')
-  			.update({ enabled: 'true' })
+  			.update({ enabled: enabled })
   			.eq('repo_id', repo_id)
 	}
 	
-	async function deleteSetting(repo_id: string) {
-		const { error } = await supabase
-  			.from('repo_settings')
-  			.delete()
-  			.eq('repo_id', repo_id)
-	}
+	// async function deleteSetting(repo_id: string) {
+	// 	const { error } = await supabase
+  	// 		.from('repo_settings')
+  	// 		.delete()
+  	// 		.eq('repo_id', repo_id)
+	// }
 	
 	async function saveChanges() {
 		var checkboxes = document.querySelectorAll('input[type=checkbox]')
@@ -65,23 +65,35 @@
 			// when checkbox is checked
 			if (repo.checked) {
 				if (settings) {
-					console.log("Settings already exist!");
+					if (settings.enabled) {
+						console.log("Already opted in!");
+					}
+					else {
+						updateSettings(repo.id, true);
+						console.log("Opting in...");
+					}
 				}
 				else {
 					createNewSetting(repo.id);
-					console.log("Opting in...");
+					console.log("Creating new setting and opting in...");
 				}
 			}
 			else {
 				if (settings) {
-					deleteSetting(repo.id);
-					console.log("Opting out...");
+					if (settings.enabled) {
+						updateSettings(repo.id, false);
+						console.log("Opting out...");
+					}
+					else {
+						console.log("Already opted out!");
+					}
 				}
 				else {
 					console.log("No settings to delete!");
 				}
 			}
 		}
+		alert("Changes Saved!");
 	}
 
 </script>
@@ -114,7 +126,7 @@
 				  <td>
 					<div class="custom-control custom-checkbox">
 						{#await pullSettings(repo.id) then settings}
-                        {#if settings}    
+                        {#if settings.enabled}    
                             <input class="form-check-input" type="checkbox" value="" id={repo.id} checked>
                         {:else}
                             <input class="form-check-input" type="checkbox" value="" id={repo.id}>
