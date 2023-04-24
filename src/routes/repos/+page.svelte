@@ -18,33 +18,6 @@
 		return data;
 	}
 
-	// pull all rows from backend response
-	async function pullBackendResponse() {
-        let { data, error } = await supabase
-        .from('backend_reponse')
-        .select('*')
-        //add this to only get specific repo
-        // .eq('repo_id', 123456789)
-
-        var backend_reponse = <backend_response[]>data
-        // console.log(backend_reponse);
-
-        return backend_reponse;
-    }
-    
-    //pull all rows from package info
-    async function pullPackages(response_id: number){
-        let { data, error } = await supabase  
-            .from('package_info')
-            .select('*')
-            //add this to only get package from a specific response
-            .eq('response_id', response_id)
-
-            var package_info = <package_info[]>data;
-
-            return package_info;
-    }
-
     //pull all rows from repo settings
     async function pullSettings(repo_id: string) {
         let { data, error } = await supabase
@@ -68,11 +41,11 @@
     }
 
 	// update existing rows in repo settings
-	async function updateSettings() {
+	async function updateSettings(repo_id: string) {
 		const { data, error } = await supabase
   			.from('repo_settings')
-  			.update({ excluded_packages: 'otherValue' })
-  			.eq('repo_id', 123456789)
+  			.update({ enabled: 'true' })
+  			.eq('repo_id', repo_id)
 	}
 	
 	async function deleteSetting(repo_id: string) {
@@ -111,31 +84,11 @@
 		}
 	}
 
-	// function repoCheckboxHandler(event: any) {
-	// 	if (event.target.checked) {
-	// 		var repoId = event.target.id;
-
-	// 		alert(repoId);
-	// 	}
-	// }
-	
-	// function pkgCheckboxHandler(event: any) {
-	// 	if (event.target.checked) {
-	// 		var repoId = event.target.parentElement.parentElement.parentElement.id;
-	// 		var pkgName = event.target.name;
-
-	// 		alert(repoId + pkgName);
-	// 	}
-	// }
-	// console.log(pullPackages(123456789));
-
-	// console.log(pullSettings());
-
 </script>
 
 <div class="jumbotron">
 	<h1 class="display-1" style="color: white">Repositories</h1>
-    <p class="lead fs-1" style="color: white;">An organized GitHub directory where you can view your repo projects and view current and most recent updates. </p>
+    <p class="lead fs-1" style="color: white;">An organized GitHub directory where you can see owned repos and choose to opt-in to notifications. </p>
     
     <hr class="my-4" style="color: black">
     <p class="lead">
@@ -144,14 +97,14 @@
 
 <main>
 	<div class="container fs-3 text-center">
-		{#await userTest() then repos}<b>{repos[0].owner.login}'s Repos</b>
+		{#await userTest() then repos}
 		<div class="row">
 			<div class="col-12">
-				<table class="table table-bordered fs-3 text-center">
+				<table class="table table-dark table-striped table-bordered fs-3 text-center">
 					<thead>
 						<tr>
-							<!-- <th scope="col"></th> -->
-							<!-- <th scope="col">Repo </th> -->
+							<th class="col-1" scope="col">Opt-in</th>
+							<th scope="col">{repos[0].owner.login}'s Repos</th>
 						</tr>
 					</thead>
 					<!--Body Start-->
@@ -160,7 +113,6 @@
 				<tr>
 				  <td>
 					<div class="custom-control custom-checkbox">
-						<!-- <input type="checkbox" class="custom-control-input" id="customCheck1"> -->
 						{#await pullSettings(repo.id) then settings}
                         {#if settings}    
                             <input class="form-check-input" type="checkbox" value="" id={repo.id} checked>
