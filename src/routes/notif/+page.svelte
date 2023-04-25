@@ -27,7 +27,6 @@
 			.eq('email', user?.email);
 
 		var repo_settings = <repo_settings[]>data;
-		console.log(repo_settings);
 		return repo_settings;
 	}
 
@@ -69,7 +68,7 @@
 			idNumb: id,
 			headers: {}
 		});
-		console.log(data.name);
+
 		return data.name;
 	}
 </script>
@@ -99,33 +98,37 @@
 							<tbody>
 								{#each all_settings as setting}
 									{#await getRepoName(setting.repo_id) then repoName}
-										<tr id={setting.repo_id}>
-											<td>
-												<div class="col">{repoName}</div>
-											</td>
-											<td>
-												<select class="form-select col" id="" on:change={freqSelectHandler}>
-													{#each freq_list as freq}
-														{#if setting.notification_frequency == freq}
-															<option selected>{freq}</option>
-														{:else}
-															<option>{freq}</option>
-														{/if}
-													{/each}
-												</select>
-											</td>
-											<td>
-												<select class="form-select col" id="" on:change={daySelectHandler}>
-													{#each day_list as day}
-														{#if setting.notification_day == day}
-															<option selected>{day}</option>
-														{:else}
-															<option>{day}</option>
-														{/if}
-													{/each}
-												</select>
-											</td>
-										</tr>
+										{#if setting.enabled}
+											<tr id={setting.repo_id}>
+												<td>
+													<div class="col">{repoName}</div>
+												</td>
+												<td>
+													<select class="form-select col" id="" on:change={freqSelectHandler}>
+														{#each freq_list as freq}
+															{#if setting.notification_frequency == freq}
+																<option selected>{freq}</option>
+															{:else}
+																<option>{freq}</option>
+															{/if}
+														{/each}
+													</select>
+												</td>
+												<td>
+													<select class="form-select col" id="" on:change={daySelectHandler}>
+														{#each day_list as day}
+															{#if setting.notification_day == day}
+																<option selected>{day}</option>
+															{:else}
+																<option>{day}</option>
+															{/if}
+														{/each}
+													</select>
+												</td>
+											</tr>
+										{:else}
+											<tr><td>You have not opted-in for any repos</td><td>N/A</td><td>N/A</td></tr>
+										{/if}
 									{/await}
 								{/each}
 							</tbody>
